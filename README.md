@@ -1,4 +1,4 @@
-# 🌟 Bhasha Sangi (भाषा संगी)
+#  Bhasha Sangi (भाषा संगी)
 ### *Bridging Textbooks & Tribal Mother Tongues in Primary Classrooms*
 
 [![Flutter Web](https://img.shields.io/badge/Frontend-Flutter%20Web-02569B?logo=flutter&logoColor=white)](https://flutter.dev)
