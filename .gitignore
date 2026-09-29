@@ -1,0 +1,61 @@
+# ==========================================
+# Root .gitignore for BhashaSangi Monorepo
+# ==========================================
+
+# Environment variables & secrets
+.env
+*.env
+*.env.local
+
+# Python artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+ENV/
+*.manifest
+*.spec
+
+# SQLite / Local Databases
+*.db
+*.sqlite
+*.sqlite3
+
+# Archives
+*.zip
+*.tar.gz
+*.rar
+*.7z
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+
+# OS Generated
+.DS_Store
+Thumbs.db
+
+# IDE & Editors
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+
+# Flutter / Dart
+**/build/
+**/.dart_tool/
+**/.pub-cache/
+**/.pub/
+**/.flutter-plugins-dependencies
+**/.flutter-plugins
+**/android/app/debug/
+**/android/app/profile/
+**/android/app/release/
+app.*.symbols
+app.*.map.json

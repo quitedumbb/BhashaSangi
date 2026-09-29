@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: bhasha-sangi-backend
+    env: python
+    region: oregon
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: DB_HOST
+        value: mysql-3f9cc0fd-bhashasangi1.c.aivencloud.com
+      - key: DB_PORT
+        value: "11143"
+      - key: DB_USER
+        value: avnadmin
+      - key: DB_PASSWORD
+        sync: false
+      - key: DB_NAME
+        value: defaultdb
+      - key: DB_SSL_MODE
+        value: REQUIRED
+      - key: BHASHINI_USER_ID
+        sync: false
+      - key: BHASHINI_INFERENCE_KEY
+        sync: false

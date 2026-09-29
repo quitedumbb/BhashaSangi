@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!--
+    If you are serving your web app in a path other than the root, change the
+    href value below to reflect the base path you are serving from.
+
+    The path provided below has to start and end with a slash "/" in order for
+    it to work correctly.
+
+    For more details:
+    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
+
+    This is a placeholder for base href that will be replaced by the value of
+    the `--base-href` argument provided to `flutter build`.
+  -->
+  <base href="$FLUTTER_BASE_HREF">
+
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="description" content="Bhasha Sangi - AI powered vernacular pedagogy and real time translation tool for mother tongue based primary education.">
+
+  <!-- iOS meta tags & icons -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Bhasha Sangi">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png"/>
+
+  <title>Bhasha Sangi | भाषा संगी - Primary Vernacular Pedagogy</title>
+  <link rel="manifest" href="manifest.json">
+</head>
+  <script>
+    window.bhashaVoiceHelper = {
+      recognition: null,
+      startListening: function(lang, onResult, onEnd, onError) {
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        if (!SpeechRecognition) {
+          if (onError) onError("Browser speech recognition not supported. Please use Microsoft Edge or Chrome.");
+          return;
+        }
+        try {
+          if (this.recognition) {
+            try { this.recognition.abort(); } catch(e) {}
+          }
+          const recog = new SpeechRecognition();
+          this.recognition = recog;
+          recog.continuous = false;
+          recog.interimResults = true;
+          recog.lang = lang || 'hi-IN';
+
+          recog.onresult = function(event) {
+            let transcript = '';
+            for (let i = event.resultIndex; i < event.results.length; ++i) {
+              transcript += event.results[i][0].transcript;
+            }
+            if (onResult && transcript) onResult(transcript);
+          };
+
+          recog.onend = function() {
+            if (onEnd) onEnd();
+          };
+
+          recog.onerror = function(event) {
+            if (onError) onError(event.error || "Speech recognition error");
+          };
+
+          recog.start();
+        } catch (e) {
+          if (onError) onError(e.message || "Could not access microphone");
+        }
+      },
+      stopListening: function() {
+        if (this.recognition) {
+          try { this.recognition.stop(); } catch(e) {}
+          this.recognition = null;
+        }
+      }
+    };
+  </script>
+  <script src="flutter_bootstrap.js" async></script>
+</body>
+</html>
