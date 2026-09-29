@@ -9,8 +9,8 @@ class ApiConfig {
     defaultBaseUrl,
   );
 
-  /// Default backend URL for local development.
-  static const String defaultBaseUrl = 'http://127.0.0.1:8000';
+  /// Default backend URL for production cloud deployment.
+  static const String defaultBaseUrl = 'https://bhashasangi.onrender.com';
 
   /// Current base URL in use.
   static String get baseUrl => baseUrlNotifier.value;
